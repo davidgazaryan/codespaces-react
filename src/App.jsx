@@ -9,8 +9,6 @@ function App() {
       <p>hello world</p>
       <h1>Hello </h1>
       <TodoLayout/>
-      <AddTodo/>
-      <TodoItem/>
     </div>
   );
 }
