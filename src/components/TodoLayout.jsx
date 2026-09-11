@@ -20,11 +20,14 @@ export const TodoLayout = () => {
 
     return (
         <div className="TodoLayout">
-            <div style={{display:"flex", textAlign:"center",justifyContent:"center"}}>
+            <div style={{display:"flex", flexDirection:"", textAlign:"center",justifyContent:"center"}}>
                 <AddTodo newTodo={setNewTodo} addTodo={addTodo} val={newTodo}/>
             </div>
-            <div style={{display:"grid",paddingTop:"2rem"}}>
-                <TodoItem/>
+            <div style={{display:"grid",paddingTop:"2rem", maxWidth:"5000px"}}>
+                {todos.map((todo,index) => (
+                        <TodoItem key={index} todos={todo} onCompleted={deleteTodo} onDelete={deleteTodo}/>
+                ))}
+                
             </div>
         </div>
     )
