@@ -7,6 +7,7 @@ export const TodoLayout = () => {
     const [newTodo,setNewTodo] = useState('');
     const [todos,setTodos] = useState([]);
     const [complete,setComplete] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
 
     console.log("new todo:",newTodo);
 
@@ -19,16 +20,27 @@ export const TodoLayout = () => {
         setComplete(prev => !prev);
     }
     const deleteTodo = (index) => {
-        setTodos(todos.filter((value,i) => value != todos[index]));
+        setTodos(todos.filter((value,_) => value != todos[index]));
     }
 
     return (
         <div className="TodoLayout">
+            <div style={{display:"flex", justifyContent:"center"}}>
+                <h1 style={{borderBottom:"2px solid",width:"40%",padding:"2rem", borderColor:"grey"}}>Todo Items</h1>
+                
+            </div>
             <div style={{display:"flex", flexDirection:"", textAlign:"center",justifyContent:"center"}}>
                 <AddTodo newTodo={setNewTodo} addTodo={addTodo} val={newTodo}/>
             </div>
             <div style={{display:"grid",paddingTop:"2rem", maxWidth:"5000px"}}>
-                {todos.map((todo,index) => (
+                {todos.length> 0 && (
+                    <label>
+                        Search Todo:
+                            <input onChange={(e) => setSearchQuery(e.target.value)} type='text'/>
+                    </label>
+                                )}
+                {todos.filter(value => value.includes(searchQuery.toLowerCase()))
+                .map((todo,index) => (
                         <TodoItem key={index} todos={todo} onCompleted={completeTodo} onDelete={() => deleteTodo(index)} completed={complete}/>
                 ))}
                 
