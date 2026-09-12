@@ -6,8 +6,6 @@ import { TodoLayout } from './components/TodoLayout';
 function App() {
   return (
     <div className="App">
-      <p>hello world</p>
-      <h1>Hello </h1>
       <TodoLayout/>
     </div>
   );
