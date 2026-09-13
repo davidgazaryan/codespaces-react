@@ -8,6 +8,7 @@ export const TodoLayout = () => {
     const [todos,setTodos] = useState([]);
     const [complete,setComplete] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+    const disabled = newTodo.length === 0;
 
     console.log("new todo:",newTodo);
 
@@ -30,7 +31,7 @@ export const TodoLayout = () => {
                 
             </div>
             <div style={{display:"flex", flexDirection:"", textAlign:"center",justifyContent:"center"}}>
-                <AddTodo newTodo={setNewTodo} addTodo={addTodo} val={newTodo}/>
+                <AddTodo disabled={disabled} newTodo={setNewTodo} addTodo={addTodo} val={newTodo} />
             </div>
             <div style={{display:"grid",paddingTop:"2rem", maxWidth:"5000px"}}>
                 {todos.length> 0 && (
