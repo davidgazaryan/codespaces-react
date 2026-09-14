@@ -4,13 +4,32 @@ import React, { useEffect } from 'react';
 import {useState} from 'react';
 
 export const TodoLayout = () => {
+    const [data,setData] = useState([]);
     const [newTodo,setNewTodo] = useState('');
     const [todos,setTodos] = useState([]);
     const [complete,setComplete] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const disabled = newTodo.length === 0;
+    console.log("data", data[0]);
 
     console.log("new todo:",newTodo);
+
+    useEffect(() => {
+        const fetchComments = async () => {
+        try {
+            const response = await fetch("https://jsonplaceholder.typicode.com/commentss")
+            if (!response.ok) {
+                throw new Error("bad request");
+            }
+            const data = await response.json();
+            setData(data);
+        }
+        catch(err) {
+            console.error("this is the error:",err);
+        }
+        }
+        fetchComments();
+    },[])
 
     const addTodo = () => {
         setTodos(prev => [...prev,newTodo])
