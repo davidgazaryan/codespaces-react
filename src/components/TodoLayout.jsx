@@ -14,22 +14,15 @@ export const TodoLayout = () => {
 
     console.log("new todo:",newTodo);
 
-    useEffect(() => {
-        const fetchComments = async () => {
-        try {
-            const response = await fetch("https://jsonplaceholder.typicode.com/commentss")
-            if (!response.ok) {
-                throw new Error("bad request");
-            }
-            const data = await response.json();
-            setData(data);
+    const fetchRecipe = async () => {
+        try{
+            const response = await fetch("https://www.themealdb.com/api/json/v1/");
+            console.log(response);
         }
-        catch(err) {
-            console.error("this is the error:",err);
+        catch(err){
+            console.log("error fetching", err);
         }
-        }
-        fetchComments();
-    },[])
+    }
 
     const addTodo = () => {
         setTodos(prev => [...prev,newTodo])
