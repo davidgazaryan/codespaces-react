@@ -20,13 +20,12 @@ export const AddRecipe = () => {
     return (
         <div style={{display:"flex",flexDirection:"column",justifyContent:"center",textAlign:"center",alignContent:"center"}}>
         <button onClick={fetchCategories} style={{width:"20%"}}>Categories</button>
-        <label>
-           Recipe 
-            <input />
-        </label>
         <li>
             {categories.map((category,index) => (
+                <>
                 <ul key={index}>{category.strCategory}</ul>
+                <img src={category.strCategoryThumb}/>
+                </>
             ))}
         </li>
         
